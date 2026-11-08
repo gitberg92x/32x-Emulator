@@ -12,11 +12,12 @@ $romFile = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['rom'])) {
     $file = $_FILES['rom'];
-    $allowedExtensions = ['bin', '32x'];
+    // Accept .bin, .32x, or .iso for Sega 32X
+    $allowedExtensions = ['bin', '32x', 'iso'];
     $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
 
     if (in_array($ext, $allowedExtensions)) {
-        $newName = uniqid() . "." . $ext;
+        $newName = uniqid() . "_" . basename($file['name']);
         $targetPath = $uploadDir . $newName;
 
         if (move_uploaded_file($file['tmp_name'], $targetPath)) {
@@ -30,3 +31,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['rom'])) {
     }
 }
 ?>
+
