@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>32X Web Player</title>
+    <!-- Link to external CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>32X Web Player</h1>
+    <div class="controls">
+        <button onclick="document.getElementById('romUpload').click()">Load .BIN</button>
+        <input type="file" id="romUpload" accept=".bin,.32x" onchange="handleFileSelect(this)">
+        <button onclick="resetEmu()">Reset</button>
+    </div>
+</header>
+
+<div id="emulator-container">
+    <canvas id="gameCanvas" width="640" height="480"></canvas>
+    
+    <div id="overlay">
+        <p>Select a .bin file to start</p>
+    </div>
+</div>
+
+<footer>
+    <span id="status-text">Status: <?php echo htmlspecialchars($romStatus); ?></span>
+    <span>FPS: <span id="fps-counter">0</span></span>
+</footer>
+
+<!-- Link to external JS -->
+<script src="script.js"></script>
+
+</body>
+</html>
